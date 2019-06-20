@@ -1,6 +1,6 @@
 var commonmark = require('commonmark');
 var base64Img = require('base64-img');
-var toMarkdown = require('to-markdown');
+var TurndownService = require('turndown')
 
 var reader = new commonmark.Parser();
 var writer = new commonmark.HtmlRenderer();
@@ -33,9 +33,12 @@ while ((event = walker.next())) {
 
 }
 
-console.log(writer.render(parsed));
+
 html = writer.render(parsed); //result in a String
+console.log(html);
 
 //Transform in Markdown
-console.log(toMarkdown(html));
+var turndownService = new TurndownService()
+var markdown = turndownService.turndown(html)
+console.log(markdown);
 
