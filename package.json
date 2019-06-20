@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An base64 image conberter for Markdown written in java script.",
   "main": "index.js",
+  "bin": {
+    "mdtoBase64img": "index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +22,7 @@
   "dependencies": {
     "base64-img": "^1.0.4",
     "commonmark": "^0.29.0",
+    "md-links": "^0.1.0",
     "turndown": "^5.0.3"
   }
 }
