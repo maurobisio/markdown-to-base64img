@@ -134,6 +134,8 @@ const EXAMPLE1 = `
 Marked - Markdown Parser
 ========================
 
+![alt text](https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png "icon")
+
 [Marked] lets you convert [Markdown] into HTML.  Markdown is a simple text format whose goal is to be very easy to read and write, even when not converted to HTML.  This demo page will let you type anything you like and see how it gets converted.  Live.  No more waiting around.
 
 How To Use The Demo
