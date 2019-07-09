@@ -1,4 +1,4 @@
-# Headers
+# 1.Headers
 
 ># H1
 >## H2
@@ -14,7 +14,7 @@
 >Alt-H2
 >------
 
-# Empahasis
+# 2.Empahasis
 >Emphasis, aka italics, with *asterisks* or _underscores_.
 >
 >Strong emphasis, aka bold, with **asterisks** or __underscores__.
@@ -23,7 +23,7 @@
 >
 >Strikethrough uses two tildes. ~~Scratch this.~~
 
-# List
+# 3.List
 
 >1. First ordered list item
 >2. Another item
@@ -42,7 +42,7 @@
 >- Or minuses
 >+ Or pluses
 
-# Links
+# 4.Links
 >There are two ways to create links
 >[I'm an inline-style link](https://www.google.com)
 >
@@ -66,7 +66,7 @@
 >[1]: http://slashdot.org
 >[link text itself]: http://www.reddit.com
 
-# Images
+# 5.Images
 >Here's our logo (hover to see the title text):
 >
 >Inline-style: 
@@ -80,7 +80,7 @@
 >Base64-style:
 ![alt text](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAG66AABuugHW3rEXAAAAB3RJTUUH4QIKFjcfARWjgAAAAuVJREFUaN7tmT1IHEEYhtdfBOMpiEjujgtWNoKdrU0EMfGiRYKFVkJiOBU0FiEmhZWVpWACJ1EQWxEEISb+XaGFxEiMqJWFVgmIcJ16eQZm4Thcd2939ifhBp7GO9f3kZ35Zr7RtHvG6/DHFDyDIs2H8S42J4hDytYDCJ6Ba1iFdq9ECFwE7bAK15BxIpDNGnS4JSKDd8CaCJ2NKgGdb/AUihUFL4Yn8DU3uFsCOuvQaVdEBu+EdaPgbgvobMjJXmIxeImcnBtmwb0S0NmCLiMRGbwLtqwG91pAZxu6E+FPpeI5b2OfSwnRDdv5BvdLQCc1Ek2+cRLcV4EBQCAz7jB8QeB/FrhVJHDrl4DYWgzCqU2BUxi8a+vglcCS/F4NDMGxRYFjGIIaWR+W/BJYzvl+NSTgyEDgCBJQnVPglgMhkPV7IRhA4FAK/CLEAIQMKnSwBPTx8uFM1Wg0+fjDo/kqk71RMAXy2JUWBAoCBYGCQEEgmAJ9sOOzwA702X44IcuhB3Y9FtiFHihX0jUzEHFDQF1wAjbcI7IHK6CigbsCe0bB+VmDXYE/MAn1d3xWAc1O+6SyH9oMFXd8Vg+T8NvpKnQmDyyVHnWnK+WB50z1MroPL1Q1dQ16pc9h3+06IM7CrYrDt8IX1XXg5z0S4uJjAZocBm+CBf0iw4BDuwK1MGtSja9gCiJ5Bo/AFFyZVOFZqHW6nA5D2kTkHMbEedgkeAjG4NwkeBqGlb2j4p2HEwv7o0PohdKc4KJD3SteBwuduBMxJ5SvEuI1EdXXYmtxE9pGoskywrTBpsU2oqjKEdfWaPGfhQk5ic16ozcIfB+Pzd1YCC4m8QSUeXKHK29iLhT1Ri/EzY3nF9GEbJS3MU4ExOVHo+bXENsLmLYpMA0PtCAMAvfDpUWBS+jXgjYI3QIHJgIH0KIFdRC8DhYNBBahTgv6EGcEUZURSEuBtKy+Rdq/NF6FZ+Kj0eSP97H5uFt/4y9GA721POPJpAAAAABJRU5ErkJggg== "icon")
 
-# Code and Syntax Highlighting
+# 6.Code and Syntax Highlighting
 
 >Code blocks are part of the Markdown spec, but syntax highlighting isn't. However, many renderers -- like Github's and Markdown Here -- support syntax highlighting. Which languages are supported and how those language names should be written will vary from renderer to renderer. Markdown Here supports highlighting for dozens of languages (and not-really-languages, like diffs and HTTP headers); to see the complete list, and how to write the language names, see the [highlight.js demo page](http://softwaremaniacs.org/media/soft/highlight/test.html).
 >
@@ -104,7 +104,7 @@
 >```
 >
 
-# Tables
+# 7.Tables
 >Tables aren't part of the core Markdown spec, but they are part of GFM and Markdown Here supports them. They are an easy way of adding tables to your email -- a task that would otherwise require copy-pasting from another application.
 >
 >Colons can be used to align columns.
@@ -124,7 +124,7 @@ raw Markdown line up prettily. You can also use inline Markdown.
 >*Still* | `renders` | **nicely**
 >1 | 2 | 3
 
-# Blockquotes
+# 8.Blockquotes
 > Blockquotes are very handy in email to emulate reply text.
 > This line is part of the same quote.
 
@@ -141,7 +141,7 @@ Quote break.
 >  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
 ></dl>
 
-# Horizontal Rule
+# 9.Horizontal Rule
 >Three or more...
 >
 >---
@@ -156,7 +156,7 @@ Quote break.
 >
 >Underscores
 
-# Line Breaks
+# 10.Line Breaks
 >My basic recommendation for learning how line breaks work is to experiment and discover -- hit <Enter> once (i.e., insert one newline), then hit it twice (i.e., insert two newlines), see what happens. You'll soon learn to get what you want. "Markdown Toggle" is your friend.
 >
 >Here are some things to try out:
