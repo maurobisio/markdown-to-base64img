@@ -22,8 +22,11 @@
   "dependencies": {
     "base64-img": "^1.0.4",
     "commonmark": "^0.29.0",
+    "isomorphic-fetch": "^2.2.1",
     "md-links": "^0.1.0",
     "node-base64-image": "^1.0.6",
-    "turndown": "^5.0.3"
+    "node-fetch": "^2.6.0",
+    "turndown": "^5.0.3",
+    "xmlhttprequest": "^1.8.0"
   }
 }

@@ -1,5 +1,10 @@
 const marked = require('marked');
 let base64Img = require('base64-img');
+var base64 = require('node-base64-image');
+var request = require('request');
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//const fetch = require("node-fetch");
+const fetch = require('isomorphic-fetch');
 
 class UnparserRenderer extends marked.Renderer { ///////////////////////////////
 
@@ -121,8 +126,56 @@ class UnparserRenderer extends marked.Renderer { ///////////////////////////////
 
 	image(href, title, text) {
 		title = title ? ' "'+ title +'"' : '';
+		/***/
+		var pat = /^https?:\/\//i;
+		if(!pat.test(href)){
+			return '!['+ text +']('+ base64Img.base64Sync(href) + title +')';
+		} else {
+			base64Img.requestBase64(href, function(err, res, body) {
+				console.log(err, body)
+				return '!['+ text +']('+ href + title +')';
+			});
 
-		return '!['+ text +']('+ base64Img.base64Sync(href) + title +')';
+
+			/***
+			fetch(href)
+			.then(function(response) {
+				console.log(response.json())
+				return '!['+ text +']('+ response.json().body.toString('base64') + title +')';
+			})
+			.then(function(myJson) {
+				console.log(myJson);
+			});
+			***/
+			/***
+			var request = new XMLHttpRequest();
+			request.open('GET', '/bar/foo.txt', true);  // `false` makes the request synchronous
+			request.send(null);
+			var data;
+			if (request.status === 200) {
+				console.log(request.responseText);
+				data = request.responseText;
+			}
+			***/
+			//request({ url: href, encoding: null }, (err, response, body) => {data = body.toString('base64')})
+			//base64.encode(href,{string:true, local:!pat.test(href)},function(err, data) {data =data})
+			//return '!['+ text +']('+ data + title +')';
+		}
+		/***/
+
+		/***
+		var pat = /^https?:\/\//i;
+		base64.encode(href,{string:true, local:!pat.test(href)},function(err, data) {
+			if(!err){
+				console.log(data)
+				return '!['+ text +']('+ data + title +')';
+			} else {
+				console.log(err.message);
+				return '!['+ text +']('+ err.message + title +')';
+			}
+		})
+		***/
+		
 	}
 
 	text(text) {
@@ -137,6 +190,8 @@ Marked - Markdown Parser
 ========================
 
 ![alt text](images/icon.png "icon")
+
+![alt text](https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png "icon")
 
 [Marked] lets you convert [Markdown] into HTML.  Markdown is a simple text format whose goal is to be very easy to read and write, even when not converted to HTML.  This demo page will let you type anything you like and see how it gets converted.  Live.  No more waiting around.
 
