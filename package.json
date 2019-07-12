@@ -21,6 +21,7 @@
   "homepage": "https://github.com/maurobisio/markdown-to-base64img#readme",
   "dependencies": {
     "base64-img": "^1.0.4",
+    "base64-img-promise": "^1.0.5",
     "commonmark": "^0.29.0",
     "isomorphic-fetch": "^2.2.1",
     "md-links": "^0.1.0",

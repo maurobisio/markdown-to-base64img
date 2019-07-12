@@ -1,10 +1,12 @@
 const marked = require('marked');
 let base64Img = require('base64-img');
-var base64 = require('node-base64-image');
-var request = require('request');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//var base64 = require('node-base64-image');
+//var request = require('request');
+//var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 //const fetch = require("node-fetch");
-const fetch = require('isomorphic-fetch');
+//const fetch = require('isomorphic-fetch');
+var request = require('ajax-request');
+var base64ImgPromise = require('base64-img-promise');
 
 class UnparserRenderer extends marked.Renderer { ///////////////////////////////
 
@@ -131,11 +133,17 @@ class UnparserRenderer extends marked.Renderer { ///////////////////////////////
 		if(!pat.test(href)){
 			return '!['+ text +']('+ base64Img.base64Sync(href) + title +')';
 		} else {
+			//requestBase64Promise(href).then(data=> console.log(data))
+			return '!['+ text +']('+ href + title +')';
+
+			
+			
+			/***
 			base64Img.requestBase64(href, function(err, res, body) {
 				console.log(err, body)
 				return '!['+ text +']('+ href + title +')';
 			});
-
+			***/
 
 			/***
 			fetch(href)
@@ -184,6 +192,7 @@ class UnparserRenderer extends marked.Renderer { ///////////////////////////////
 		);
 	}
 }
+
 
 const EXAMPLE1 = `
 Marked - Markdown Parser
