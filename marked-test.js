@@ -15,8 +15,10 @@ let base64Img = require('base64-img');
 //const fetch = require('isomorphic-fetch');
 var request = require('ajax-request');
 var base64ImgPromise = require('base64-img-promise');
+const download = require('image-downloader')
+const getUrls = require('get-urls');
 
-class UnparserRenderer extends marked.Renderer { ///////////////////////////////
+class UnparserRenderer extends marked.Renderer {
 
 	static render(source, options) {
 		return (new this(options)).render(source);
@@ -136,25 +138,7 @@ class UnparserRenderer extends marked.Renderer { ///////////////////////////////
 
 	image(href, title, text) {
 		title = title ? ' "'+ title +'"' : '';
-		/***/
-		var pat = /^https?:\/\//i;
-		if(!pat.test(href)){
-			return '!['+ text +']('+ base64Img.base64Sync(href) + title +')';
-		} else {
-			//requestBase64Promise(href).then(data=> console.log(data))
-			return '!['+ text +']('+ href + title +')';
-
-			
-			
-			/***
-			base64Img.requestBase64(href, function(err, res, body) {
-				console.log(err, body)
-				return '!['+ text +']('+ href + title +')';
-			});
-			***/
-
-		}
-		/***/
+		return '!['+ text +']('+ base64Img.base64Sync(href) + title +')';
 
 		/***
 		var pat = /^https?:\/\//i;
@@ -245,4 +229,113 @@ Ready to start writing?  Either start changing stuff on the left or
 [Markdown]: http://daringfireball.net/projects/markdown/
 `;
 
-console.log(UnparserRenderer.render(EXAMPLE1));
+const EXAMPLE2 = `
+# 2.Empahasis
+>![alt text](images/icon.png "icon")
+>Emphasis, aka italics, with *asterisks* or _underscores_.
+>>Inline-style: 
+![alt text](https://raw.githubusercontent.com/adam-p/markdown-here/master/src/common/images/icon48.png "Logo Title Text 1")
+>>Strong emphasis, aka bold, with **asterisks** or __underscores__.
+>
+>Combined emphasis with **asterisks and _underscores_**.
+>
+>Strikethrough uses two tildes. ~~Scratch this.~~
+`;
+
+const EXAMPLE3 = `
+# heading
+
+[link][1]
+
+[1]: #heading "heading"
+`;
+
+
+//console.log(UnparserRenderer.render(EXAMPLE2));
+
+//marked.setOptions({renderer:new UnparserRenderer.render()})
+const opt = {renderer:new UnparserRenderer()}
+
+const lexer = new marked.Lexer();
+const tokens = lexer.lex(EXAMPLE2, opt);
+console.log(tokens);
+console.log(lexer.rules);
+
+//Recorro los lexemas y obtengo las URL
+var set = new Set();
+for(i = 0; i<tokens.length; i++){
+	console.log(i);
+	console.log(tokens[i]);
+	if(tokens[i]['type'] == 'paragraph'){
+		text = tokens[i]['text'];
+		var urlImg = /(https?:\/\/.*\.(?:png|jpg))/i;
+		if(urlImg.test(text)){
+			console.log('True')
+			const path = 'images';
+			var mySet = getUrls(text);
+			var url;
+			for (let item of mySet){
+				url = item;
+				set.add(item);
+			} 
+			console.log(url);
+			set.add
+			console.log(url.substring(url.lastIndexOf('/') + 1));
+			filename = path + '/' + url.substring(url.lastIndexOf('/') + 1);
+			tokens[i]['text'] = text.replace(urlImg, filename);
+			console.log(tokens[i]['text']);
+		}
+	}
+}
+console.log(tokens);
+
+//Descargo las imagenes
+for (let item of set){
+	const options = {
+		url: item,
+		dest: './images'                  // Save to /path/to/dest/image.jpg
+	}
+	download.image(options)
+	.then(({ filename, image }) => {
+	console.log('File saved to', filename)
+	})
+	.catch((err) => {
+	console.error(err)
+	})
+}
+
+//Parser y Unparser
+const markdown = marked.parser(tokens, opt);
+console.log(markdown);
+console.log(tokens);
+
+
+
+function downloadIMG(url, path) {
+	const options = {
+		url: url,
+		dest: path                  // Save to /path/to/dest/image.jpg
+	}
+	return download.image(options)
+	.then(({ filename, image }) => {
+	console.log('File saved to', filename)
+	return filename;
+	})
+	.catch((err) => {
+	console.error(err)
+	return error(e);
+	})
+}
+
+async function downloadIMGAsync(url, path) {
+	const options = {
+		url: url,
+		dest: path                  // Save to /path/to/dest/image.jpg
+	  }
+	try {
+	  const { filename, image } = await download.image(options)
+	  return filename.json(); // => /path/to/dest/image.jpg 
+	} catch (e) {
+	  return error(e);
+	}
+}
